@@ -16,7 +16,7 @@ public interface CollectionMapper extends BaseMapper<Collections> {
 		@Result(column = "user_id",property="user", one=@One(select="org.nesc.ec.bigdata.mapper.UserInfoMapper.queryById")),
 		@Result(column = "cluster_id",property="cluster", one=@One(select="org.nesc.ec.bigdata.mapper.ClusterInfoMapper.queryById"))
     })
-    List<Collections> listByUser(Long userId, String type);
+    List<Collections> listByUser(@Param("userId")Long userId, @Param("type")String type);
 	
 	@Select("select * from topic_collection where user_id=#{userId} and type=#{type} and cluster_id=#{clusterId} and name=#{name}")
     @Results({
